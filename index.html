@@ -59,8 +59,8 @@
           var date1 = moment(document.getElementById('date').innerHTML, 'YYYY-MM-DD');
           var date2 = date1.clone().add(28, 'day');
           var date3 = date1.clone().add(30, 'day');
-          document.getElementById('28-days').innerHTML = String(date2.format('MMMM D'));
-          document.getElementById('30-days').innerHTML = String(date3.format('MMMM D'));
+          document.getElementById('28-days').innerHTML = String(date2.format('M/D/YYYY'));
+          document.getElementById('30-days').innerHTML = String(date3.format('M/D/᜵᜵YYYY'));
         }
       </script>
     </div>
