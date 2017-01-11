@@ -5,6 +5,12 @@ body {
 
 .row {
   margin-top: 40px;
+  max-width: 360px;
+}
+
+#calendar-widget {
+  margin-bottom: 50px;
+  font-size: 22px;
 }
 
 #date {
