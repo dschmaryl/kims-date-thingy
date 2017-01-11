@@ -8,9 +8,9 @@ body {
   max-width: 360px;
 }
 
-.dates {
-  margin-left: 5px;
-}
+/*.dates {
+  margin-left: 0px;
+}*/
 
 #calendar-widget {
   margin-bottom: 50px;
