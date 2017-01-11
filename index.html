@@ -4,12 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+    <script type="text/javascript" src="calendarview.min.js"></script>
+    <script type="text/javascript" src="moment.min.min.js"></script>
     <style>
-      /* from calendarview.css */
       div.calendar{font-size:smaller;color:#000}div.calendar.popup{margin-left:-40px;margin-top:-100px}div.calendar table{background-color:#eee;border:1px solid #aaa;border-collapse:collapse}div.calendar thead{background-color:#fff}div.calendar td,div.calendar th{padding:3px;text-align:center}div.calendar td.title{font-weight:700}div.calendar th{background:#ddd;border-bottom:1px solid #ccc;border-top:1px solid #ccc;font-weight:700;color:#555}div.calendar tr.days td{width:2em;color:#555;text-align:center;cursor:pointer}div.calendar td.button:hover,div.calendar tr.days td:hover{background-color:#34ABFA;cursor:pointer}div.calendar tr.days td:active div.calendar td.button:active{background-color:#cde}div.calendar tr.days td.selected{font-weight:700;background-color:#fff;color:#000}div.calendar tr.days td.today{font-weight:700;color:#D50000}div.calendar tr.days td.otherDay{color:#bbb}
-
-      /* my stuff */
       body {
         max-width: 100%;
         font-size: 28px;
@@ -26,17 +25,10 @@
         display: none;
       }
     </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
-    <script type="text/javascript" src="calendarview.min.js"></script>
-    <script type="text/javascript" src="moment.min.min.js"></script>
-
     <title>kims date calculator</title>
   </head>
-
   <body>
     <div class="container">
-
       <section id="calendar-widget" class="row">
         <div class="col-xs-12">
           <div id="calendar" align="center" onclick="showDates()">
@@ -44,7 +36,6 @@
         </div>
         <div id="date"></div>
       </section>
-
       <section id="calculated-dates">
         <article class="row">
           <div class="col-xs-4 text-right">
@@ -53,7 +44,6 @@
           <div id="28-days" class="col-xs-6">
           </div>
         </article>
-
         <article class="row">
           <div class="col-xs-4 text-right">
             30+
@@ -62,7 +52,6 @@
           </div>
         </article>
       </section>
-
       <script type="text/javascript">
         window.onload = function() {
           Calendar.setup({
@@ -70,11 +59,6 @@
             parentElement : 'calendar'
           })
         }
-
-        var today = moment();
-        document.getElementById('date').innerHTML = String(today.format('YYYY-MM-DD'));
-        showDates();
-
         function showDates() {
           var date1 = moment(document.getElementById('date').innerHTML, 'YYYY-MM-DD');
           var date2 = date1.clone().add(27, 'day');
@@ -82,6 +66,9 @@
           document.getElementById('28-days').innerHTML = String(date2.format('M/D/YYYY'));
           document.getElementById('30-days').innerHTML = String(date3.format('M/D/YYYY'));
         }
+        var today = moment();
+        document.getElementById('date').innerHTML = String(today.format('YYYY-MM-DD'));
+        showDates();
       </script>
     </div>
   </body>
