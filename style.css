@@ -8,6 +8,10 @@ body {
   max-width: 360px;
 }
 
+.dates {
+  margin-left: 5px;
+}
+
 #calendar-widget {
   margin-bottom: 50px;
   font-size: 22px;
