@@ -28,7 +28,7 @@
       <section id="calculated-dates">
         <article class="row">
           <div class="col-xs-4 text-right">
-            28:
+            28+
           </div>
           <div id="28-days" class="col-xs-6 dates">
           </div>
@@ -36,7 +36,7 @@
 
         <article class="row">
           <div class="col-xs-4 text-right">
-            30:
+            30+
           </div>
           <div id="30-days" class="col-xs-6 dates">
           </div>
@@ -59,8 +59,8 @@
           var date1 = moment(document.getElementById('date').innerHTML, 'YYYY-MM-DD');
           var date2 = date1.clone().add(28, 'day');
           var date3 = date1.clone().add(30, 'day');
-          document.getElementById('28-days').innerHTML = String(date2.format('MMM. D, YYYY'));
-          document.getElementById('30-days').innerHTML = String(date3.format('MMM. D, YYYY'));
+          document.getElementById('28-days').innerHTML = String(date2.format('MMM. D'));
+          document.getElementById('30-days').innerHTML = String(date3.format('MMM. D'));
         }
       </script>
     </div>
