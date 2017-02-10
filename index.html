@@ -4,74 +4,85 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/calendar.min.css" />
-    <script src="js/calendar.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
     <script src="js/moment.min.min.js"></script>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+      $(document).ready( function() {
+        $(".ui-loader").hide();
+      });
+      $(function () {
+        $('#datetimepicker').datetimepicker({
+          inline: true,
+          format: 'YYYY-MM-DD'
+        });
+      });
+      $(document).on('dp.change', '#datetimepicker', function() {
+        updateDates();
+      });
+      $(document).on('pagecreate', '#main-page', function() {
+        $('#datetimepicker').on('swipeleft', function() {
+          var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').add(1, 'month');
+          $('#datetimepicker').data("DateTimePicker").date(date1);
+        });
+        $('#datetimepicker').on('swiperight', function() {
+          var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').subtract(1, 'month');
+          $('#datetimepicker').data("DateTimePicker").date(date1);
+        });
+      });
+      function printDates(date1) {
+        var date2 = date1.clone().add(27, 'day');
+        var date3 = date1.clone().add(29, 'day');
+        document.getElementById('days-28').innerHTML = String(date2.format('M/D/YY'));
+        document.getElementById('days-30').innerHTML = String(date3.format('M/D/YY'));
+      }
+      function updateDates() {
+        var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD');
+        printDates(date1)
+      }
+    </script>
     <style>
       body {
         max-width: 100%;
         font-size: 30px;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
       }
       .row {
-        margin-top: 40px;
-        max-width: 360px;
+        margin-top: 30px;
       }
-      #calendar-widget {
-        margin-bottom: 50px;
+      #datetimepicker {
+        margin: 10px;
         font-size: 22px;
       }
       .text-spaced {
         letter-spacing: 2.5px;
       }
-      #selected-date {
-        display: none;
-      }
     </style>
     <title>kims date calculator</title>
   </head>
-  <body>
+  <body id="main-page">
     <div class="container">
-      <section id="calendar-widget" class="row">
+      <div class="row">
         <div class="col-xs-12">
-          <div id="calendar" align="center" onclick="showDates()">
+          <div class="form-group">
+            <div id="datetimepicker"></div>
           </div>
         </div>
-        <div id="selected-date"></div>
-      </section>
+      </div>
       <section id="calculated-dates">
-        <article class="row">
-          <div class="col-xs-4 text-right">
-            28+
-          </div>
-          <div id="days-28" class="col-xs-6 text-spaced">
-          </div>
-        </article>
-        <article class="row">
-          <div class="col-xs-4 text-right">
-            30+
-          </div>
-          <div id="days-30" class="col-xs-6 text-spaced">
-          </div>
-        </article>
+        <div class="row">
+          <div class="col-xs-4 text-right">28+</div>
+          <div id="days-28" class="col-xs-6 text-spaced"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 text-right">30+</div>
+          <div id="days-30" class="col-xs-6 text-spaced"></div>
+        </div>
       </section>
-      <script>
-        window.onload = function() {
-          Calendar.setup({
-            dateField : 'selected-date',
-            parentElement : 'calendar'
-          })
-        }
-        function showDates() {
-          var date1 = moment(document.getElementById('selected-date').innerHTML, 'YYYY-MM-DD');
-          var date2 = date1.clone().add(27, 'day');
-          var date3 = date1.clone().add(29, 'day');
-          document.getElementById('days-28').innerHTML = String(date2.format('M/D/YY'));
-          document.getElementById('days-30').innerHTML = String(date3.format('M/D/YY'));
-        }
-        var today = moment();
-        document.getElementById('selected-date').innerHTML = String(today.format('YYYY-MM-DD'));
-        showDates();
-      </script>
     </div>
   </body>
 </html>
