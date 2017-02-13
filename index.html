@@ -8,7 +8,7 @@
     <script src="js/moment.min.min.js"></script>
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.custom.min.js"></script>
     <script>
       $(document).ready( function() {
         $(".ui-loader").hide();
@@ -61,6 +61,10 @@
       .text-spaced {
         letter-spacing: 2.5px;
       }
+      .bootstrap-datetimepicker-widget table td.old,
+      .bootstrap-datetimepicker-widget table td.new {
+        visibility: hidden;
+      }
     </style>
     <title>kims date calculator</title>
   </head>
@@ -73,16 +77,14 @@
           </div>
         </div>
       </div>
-      <section id="calculated-dates">
-        <div class="row">
-          <div class="col-xs-4 text-right">28+</div>
-          <div id="days-28" class="col-xs-6 text-spaced"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4 text-right">30+</div>
-          <div id="days-30" class="col-xs-6 text-spaced"></div>
-        </div>
-      </section>
+      <div class="row">
+        <div class="col-xs-4 col-md-1 text-right">28+</div>
+        <div id="days-28" class="col-xs-6 text-spaced"></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 col-md-1 text-right">30+</div>
+        <div id="days-30" class="col-xs-6 text-spaced"></div>
+      </div>
     </div>
   </body>
 </html>
