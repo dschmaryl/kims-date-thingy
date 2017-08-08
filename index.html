@@ -20,28 +20,22 @@
         });
       });
       $(document).on('dp.change', '#datetimepicker', function() {
-        updateDates();
+        var selectedDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD'),
+            dateOne = selectedDate.clone().add(27, 'day'),
+            dateTwo = selectedDate.clone().add(29, 'day');
+        document.getElementById('days-28').innerHTML = String(dateOne.format('M/D/YY'));
+        document.getElementById('days-30').innerHTML = String(dateTwo.format('M/D/YY'));
       });
       $(document).on('pagecreate', '#main-page', function() {
         $('#datetimepicker').on('swipeleft', function() {
-          var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').add(1, 'month');
-          $('#datetimepicker').data("DateTimePicker").date(date1);
+          var newDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').add(1, 'month');
+          $('#datetimepicker').data("DateTimePicker").date(newDate);
         });
         $('#datetimepicker').on('swiperight', function() {
-          var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').subtract(1, 'month');
-          $('#datetimepicker').data("DateTimePicker").date(date1);
+          var newDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').subtract(1, 'month');
+          $('#datetimepicker').data("DateTimePicker").date(newDate);
         });
       });
-      function printDates(date1) {
-        var date2 = date1.clone().add(27, 'day');
-        var date3 = date1.clone().add(29, 'day');
-        document.getElementById('days-28').innerHTML = String(date2.format('M/D/YY'));
-        document.getElementById('days-30').innerHTML = String(date3.format('M/D/YY'));
-      }
-      function updateDates() {
-        var date1 = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD');
-        printDates(date1)
-      }
     </script>
     <style>
       body {
