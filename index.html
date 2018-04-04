@@ -39,22 +39,28 @@
     </script>
     <style>
       body {
-        max-width: 100%;
-        font-size: 30px;
-        margin: 0px;
-        padding: 0px;
-        border: 0px;
+        height: 100%;
+        overflow: hidden;
+        padding: 50px 10px 0 10px;
+        font-size: 32px;
       }
-      .row {
-        margin-top: 30px;
+      .container {
+        margin: auto;
+        max-width: 400px;
+        min-width: 300px;
       }
       #datetimepicker {
-        margin: 10px;
         font-size: 22px;
         touch-action: none;
       }
-      .text-spaced {
+      .days-28-row, .days-30-row {
+        text-align: center;
+        display: block;
+        padding-top: 30px;
+      }
+      #days-28, #days-30 {
         letter-spacing: 2.5px;
+        padding-left: 26px;
       }
       .bootstrap-datetimepicker-widget table td.old,
       .bootstrap-datetimepicker-widget table td.new {
@@ -65,20 +71,14 @@
   </head>
   <body id="main-page">
     <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <div class="form-group">
-            <div id="datetimepicker"></div>
-          </div>
-        </div>
+      <div class="form-group">
+        <div id="datetimepicker"></div>
       </div>
-      <div class="row">
-        <div class="col-xs-4 col-md-1 text-right">28+</div>
-        <div id="days-28" class="col-xs-6 text-spaced"></div>
+      <div class="days-28-row">
+        28+ <span id="days-28"></span>
       </div>
-      <div class="row">
-        <div class="col-xs-4 col-md-1 text-right">30+</div>
-        <div id="days-30" class="col-xs-6 text-spaced"></div>
+      <div class="days-30-row">
+        30+ <span id="days-30"></span>
       </div>
     </div>
   </body>
