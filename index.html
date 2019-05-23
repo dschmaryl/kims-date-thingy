@@ -10,30 +10,43 @@
     <script src="js/jquery.mobile.custom.min.js"></script>
     <script src="js/bootstrap-datetimepicker.custom.min.js"></script>
     <script>
-      $(document).ready( function() {
-        $(".ui-loader").hide();
+      $(document).ready(function() {
+        $('.ui-loader').hide();
       });
-      $(function () {
+
+      $(function() {
         $('#datetimepicker').datetimepicker({
           inline: true,
           format: 'YYYY-MM-DD'
         });
       });
+      function getDate() {
+        return moment($('#datetimepicker').data('date'), 'YYYY-MM-DD');
+      }
+      function addDays(date, days) {
+        return String(
+          date
+            .clone()
+            .add(days, 'day')
+            .format('M/D/YY')
+        );
+      }
       $(document).on('dp.change', '#datetimepicker', function() {
-        var selectedDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD'),
-            dateOne = selectedDate.clone().add(27, 'day'),
-            dateTwo = selectedDate.clone().add(29, 'day');
-        document.getElementById('days-28').innerHTML = String(dateOne.format('M/D/YY'));
-        document.getElementById('days-30').innerHTML = String(dateTwo.format('M/D/YY'));
+        var date = getDate();
+        document.getElementById('days-28').innerHTML = addDays(date, 27);
+        document.getElementById('days-30').innerHTML = addDays(date, 29);
       });
       $(document).on('pagecreate', '#main-page', function() {
+        var date = getDate();
         $('#datetimepicker').on('swipeleft', function() {
-          var newDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').add(1, 'month');
-          $('#datetimepicker').data("DateTimePicker").date(newDate);
+          $('#datetimepicker')
+            .data('DateTimePicker')
+            .date(date.add(1, 'month'));
         });
         $('#datetimepicker').on('swiperight', function() {
-          var newDate = moment($("#datetimepicker").data('date'), 'YYYY-MM-DD').subtract(1, 'month');
-          $('#datetimepicker').data("DateTimePicker").date(newDate);
+          $('#datetimepicker')
+            .data('DateTimePicker')
+            .date(date.subtract(1, 'month'));
         });
       });
     </script>
@@ -53,12 +66,14 @@
         font-size: 22px;
         touch-action: none;
       }
-      .days-28-row, .days-30-row {
+      .days-28-row,
+      .days-30-row {
         text-align: center;
         display: block;
         padding-top: 30px;
       }
-      #days-28, #days-30 {
+      #days-28,
+      #days-30 {
         letter-spacing: 2.5px;
         padding-left: 26px;
       }
@@ -74,12 +89,8 @@
       <div class="form-group">
         <div id="datetimepicker"></div>
       </div>
-      <div class="days-28-row">
-        28+ <span id="days-28"></span>
-      </div>
-      <div class="days-30-row">
-        30+ <span id="days-30"></span>
-      </div>
+      <div class="days-28-row">28+ <span id="days-28"></span></div>
+      <div class="days-30-row">30+ <span id="days-30"></span></div>
     </div>
   </body>
 </html>
