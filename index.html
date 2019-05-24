@@ -10,72 +10,65 @@
     <script src="js/jquery.mobile.custom.min.js"></script>
     <script src="js/bootstrap-datetimepicker.custom.min.js"></script>
     <script>
-      $(document).ready(function() {
-        $('.ui-loader').hide();
-      });
+      $(document).ready(() => $('.ui-loader').hide());
 
-      $(function() {
+      $(() =>
         $('#datetimepicker').datetimepicker({
           inline: true,
           format: 'YYYY-MM-DD'
-        });
-      });
-      function getDate() {
-        return moment($('#datetimepicker').data('date'), 'YYYY-MM-DD');
-      }
-      function addDays(date, days) {
-        return String(
-          date
-            .clone()
-            .add(days, 'day')
-            .format('M/D/YY')
+        })
+      );
+
+      const getDate = () =>
+        moment($('#datetimepicker').data('date'), 'YYYY-MM-DD');
+
+      $(document).on('dp.change', '#datetimepicker', () => {
+        let selectedDate = getDate();
+        document.getElementById('days-28').innerHTML = String(
+          selectedDate.add(27, 'day').format('M/D/YY')
         );
-      }
-      $(document).on('dp.change', '#datetimepicker', function() {
-        var date = getDate();
-        document.getElementById('days-28').innerHTML = addDays(date, 27);
-        document.getElementById('days-30').innerHTML = addDays(date, 29);
+        document.getElementById('days-30').innerHTML = String(
+          selectedDate.add(2, 'day').format('M/D/YY')
+        );
       });
-      $(document).on('pagecreate', '#main-page', function() {
-        var date = getDate();
-        $('#datetimepicker').on('swipeleft', function() {
+
+      $(document).on('pagecreate', '#main-page', () => {
+        $('#main-page').on('swipeleft', () =>
           $('#datetimepicker')
             .data('DateTimePicker')
-            .date(date.add(1, 'month'));
-        });
-        $('#datetimepicker').on('swiperight', function() {
+            .date(getDate().add(1, 'month'))
+        );
+        $('#main-page').on('swiperight', () =>
           $('#datetimepicker')
             .data('DateTimePicker')
-            .date(date.subtract(1, 'month'));
-        });
+            .date(getDate().subtract(1, 'month'))
+        );
       });
     </script>
     <style>
-      body {
-        overflow: hidden;
-      }
       .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         max-width: 400px;
-        padding: 46px 12px 0 12px;
+        height: 100vh;
+        min-height: 540px;
+        max-height: 640px;
+        padding: 10px 12px 30px 12px;
       }
       #datetimepicker {
         font-size: 1.6em;
         touch-action: none;
-      }
-      .days-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        margin-bottom: -12px;
       }
       .days-section {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 15px 0;
       }
       .days-header {
         font-size: 2em;
-        color: #666;
+        color: #777;
       }
       #days-28,
       #days-30 {
@@ -90,23 +83,21 @@
     <title>kims date calculator</title>
   </head>
   <body id="main-page">
-    <div class="container" id="main-container">
+    <div class="container">
       <div class="form-group">
         <div id="datetimepicker"></div>
       </div>
-      <div class="days-container">
-        <div class="days-section">
-          <div class="days-header">
-            28+
-          </div>
-          <div><span id="days-28"></span></div>
+      <div class="days-section">
+        <div class="days-header">
+          28+
         </div>
-        <div class="days-section">
-          <div class="days-header">
-            30+
-          </div>
-          <div><span id="days-30"></span></div>
+        <div><span id="days-28"></span></div>
+      </div>
+      <div class="days-section">
+        <div class="days-header">
+          30+
         </div>
+        <div><span id="days-30"></span></div>
       </div>
     </div>
   </body>
