@@ -52,30 +52,35 @@
     </script>
     <style>
       body {
-        height: 100%;
         overflow: hidden;
-        padding: 50px 10px 0 10px;
-        font-size: 32px;
       }
       .container {
-        margin: auto;
         max-width: 400px;
-        min-width: 300px;
+        padding: 46px 12px 0 12px;
       }
       #datetimepicker {
-        font-size: 22px;
+        font-size: 1.6em;
         touch-action: none;
       }
-      .days-28-row,
-      .days-30-row {
-        text-align: center;
-        display: block;
-        padding-top: 30px;
+      .days-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .days-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+      }
+      .days-header {
+        font-size: 2em;
+        color: #666;
       }
       #days-28,
       #days-30 {
-        letter-spacing: 2.5px;
-        padding-left: 26px;
+        letter-spacing: 1px;
+        font-size: 3em;
       }
       .bootstrap-datetimepicker-widget table td.old,
       .bootstrap-datetimepicker-widget table td.new {
@@ -85,12 +90,24 @@
     <title>kims date calculator</title>
   </head>
   <body id="main-page">
-    <div class="container">
+    <div class="container" id="main-container">
       <div class="form-group">
         <div id="datetimepicker"></div>
       </div>
-      <div class="days-28-row">28+ <span id="days-28"></span></div>
-      <div class="days-30-row">30+ <span id="days-30"></span></div>
+      <div class="days-container">
+        <div class="days-section">
+          <div class="days-header">
+            28+
+          </div>
+          <div><span id="days-28"></span></div>
+        </div>
+        <div class="days-section">
+          <div class="days-header">
+            30+
+          </div>
+          <div><span id="days-30"></span></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
