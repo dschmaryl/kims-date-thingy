@@ -25,7 +25,7 @@
       $(document).on('dp.change', '#datetimepicker', () => {
         let selectedDate = getDate();
         document.getElementById('days-28').innerHTML = String(
-          selectedDate.add(28, 'day').format('M/D/YY')
+          selectedDate.add(27, 'day').format('M/D/YY')
         );
         document.getElementById('days-30').innerHTML = String(
           selectedDate.add(2, 'day').format('M/D/YY')
